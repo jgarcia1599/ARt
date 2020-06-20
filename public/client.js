@@ -7,7 +7,8 @@ let poses = [];
 let video;
 
 function setup(){
-	createCanvas(640, 480);
+	var canvas = createCanvas(640, 480);
+	canvas.parent('jumbo-canvas')
 	video = createCapture(VIDEO);
 	video.size(width, height);
 	// Hide the video element, and just show the canvas

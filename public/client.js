@@ -10,7 +10,8 @@ function setup(){
 	var canvas = createCanvas(640, 480);
 	canvas.parent('jumbo-canvas')
 	// video = createCapture(VIDEO);
-	// video.size(width, height);
+	// video.size(width/2, height/2);
+	// video.parent('jumbo-canvas');
 	// // Hide the video element, and just show the canvas
 	// video.hide();
   

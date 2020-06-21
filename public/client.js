@@ -9,18 +9,18 @@ let video;
 function setup(){
 	var canvas = createCanvas(640, 480);
 	canvas.parent('jumbo-canvas')
-	video = createCapture(VIDEO);
-	video.size(width, height);
-	// Hide the video element, and just show the canvas
-	video.hide();
+	// video = createCapture(VIDEO);
+	// video.size(width, height);
+	// // Hide the video element, and just show the canvas
+	// video.hide();
   
-	// Create a new poseNet method with a single detection
-	poseNet = ml5.poseNet(video, modelReady);
-	// This sets up an event that fills the global variable "poses"
-	// with an array every time new poses are detected
-	poseNet.on('pose', function(results) {
-	  poses = results;
-	});
+	// // Create a new poseNet method with a single detection
+	// poseNet = ml5.poseNet(video, modelReady);
+	// // This sets up an event that fills the global variable "poses"
+	// // with an array every time new poses are detected
+	// poseNet.on('pose', function(results) {
+	//   poses = results;
+	// });
 
 
 
@@ -36,11 +36,11 @@ function modelReady() {
 }
 
 function draw() {
-	background(51);
+	// background(51);
   
-	// We can call both functions to draw all keypoints and the skeletons
-	drawKeypoints();
-	drawSkeleton();
+	// // We can call both functions to draw all keypoints and the skeletons
+	// drawKeypoints();
+	// drawSkeleton();
   }
 
 

@@ -1,0 +1,25 @@
+/* .row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 50%;
+  } */
+html,body{
+    min-width: 1000px;
+}
+  #video-container{
+      right:10%;
+      top: 150px;
+      position: absolute;
+      background-color: turquoise;
+      text-align: center;
+      border-width: 2px;
+      border-color: black;
+      width:213px;
+      height:213px;
+  }
+video{
+    width:213px;
+    height:213px;
+}

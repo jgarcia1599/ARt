@@ -1,3 +1,17 @@
+var user_brush = "mouse";
+$(document).ready(function(){
+$("input[type='radio']").click(function(){
+	var radioValue = $("input[name='brush_choice']:checked").val();
+	if(radioValue){
+		user_brush = radioValue;
+		console.log("Your are a - " + user_brush);
+		
+	}
+});
+});
+
+
+
 var socket, myColor, mySize;
 
 //Posenet stuff
@@ -7,21 +21,21 @@ let poses = [];
 let video;
 
 function setup(){
-	var canvas = createCanvas(640, 480);
+	var canvas = createCanvas(500, 500);
 	canvas.parent('jumbo-canvas')
-	// video = createCapture(VIDEO);
-	// video.size(width/2, height/2);
-	// video.parent('jumbo-canvas');
-	// // Hide the video element, and just show the canvas
+	video = createCapture(VIDEO);
+	video.size(width, height);
+	video.parent('jumbo-canvas');
+	// Hide the video element, and just show the canvas
 	// video.hide();
   
 	// // Create a new poseNet method with a single detection
-	// poseNet = ml5.poseNet(video, modelReady);
-	// // This sets up an event that fills the global variable "poses"
-	// // with an array every time new poses are detected
-	// poseNet.on('pose', function(results) {
-	//   poses = results;
-	// });
+	poseNet = ml5.poseNet(video, modelReady);
+	// This sets up an event that fills the global variable "poses"
+	// with an array every time new poses are detected
+	poseNet.on('pose', function(results) {
+	  poses = results;
+	});
 
 
 
@@ -37,10 +51,11 @@ function modelReady() {
 }
 
 function draw() {
+
 	// background(51);
   
 	// // We can call both functions to draw all keypoints and the skeletons
-	// drawKeypoints();
+	drawKeypoints();
 	// drawSkeleton();
   }
 
@@ -78,10 +93,19 @@ function drawKeypoints()  {
 		// A keypoint is an object describing a body part (like rightArm or leftShoulder)
 		let keypoint = pose.keypoints[j];
 		// Only draw an ellipse is the pose probability is bigger than 0.2
-		if (keypoint.score > 0.2) {
-		  fill(255, 0, 0);
+		if (keypoint.score > 0.2 && keypoint.part == user_brush) {
+		  fill(myColor[0], myColor[1], myColor[2]);
 		  noStroke();
-		  ellipse(keypoint.position.x, keypoint.position.y, 10, 10);
+		  ellipse(keypoint.position.x, keypoint.position.y, mySize, mySize);
+		  var data = {
+			x: keypoint.position.x,
+			y: keypoint.position.y,
+			color: myColor,
+			size: mySize
+			};
+			socket.emit('mouse', data);
+			
+
 		}
 	  }
 	}

@@ -68,18 +68,22 @@ function newDrawing(data){
 }
 
 function mouseDragged(){
-	var data = {
-		x: mouseX,
-		y: mouseY,
-		color: myColor,
-		size: mySize
-	}
-  console.log(data);
-	socket.emit('mouse', data)
+	if (user_brush =="mouse"){
+		var data = {
+			x: mouseX,
+			y: mouseY,
+			color: myColor,
+			size: mySize
+		}
+		  console.log(data);
+		socket.emit('mouse', data)
+	
+		noStroke();
+		fill(myColor[0], myColor[1], myColor[2]);
+		ellipse(mouseX, mouseY, mySize, mySize);
 
-	noStroke();
-	fill(myColor[0], myColor[1], myColor[2]);
-	ellipse(mouseX, mouseY, mySize, mySize)
+	}
+
 
 
 }
@@ -104,7 +108,7 @@ function drawKeypoints()  {
 			size: mySize
 			};
 			socket.emit('mouse', data);
-			
+
 
 		}
 	  }

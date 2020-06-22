@@ -55,7 +55,7 @@ function setup(){
 
 	background(51)
 	socket = io()
-	socket.on('mouse', newDrawing)
+	socket.on('drawing', newDrawing)
 	myColor = [random(255), random(255), random(255)]
 	mySize = random(10,70)
 
@@ -97,7 +97,7 @@ function mouseDragged(){
 			size: mySize
 		}
 		  console.log(data);
-		socket.emit('mouse', {data,room});
+		socket.emit('drawing', {data,room});
 	
 		pg.noStroke();
 		pg.fill(myColor[0], myColor[1], myColor[2]);
@@ -128,7 +128,7 @@ function drawKeypoints()  {
 			color: myColor,
 			size: mySize
 			};
-			socket.emit('mouse', {data,room});
+			socket.emit('drawing', {data,room});
 
 
 		}
@@ -156,6 +156,18 @@ function downloadcanvas(){
 	console.log("ok lets download");
 	save(pg, "art", 'png');
 
+}
+
+function shareurl(){
+	console.log("URL in clipboard");
+	var dummy = document.createElement('input'),
+	text = window.location.href;
+	document.body.appendChild(dummy);
+	dummy.value = text;
+	dummy.select();
+	document.execCommand('copy');
+	document.body.removeChild(dummy);
+	alert('Link copied to clipboard. Please share with your friends! :)');
 }
 
 

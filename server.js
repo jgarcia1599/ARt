@@ -13,18 +13,14 @@ io.sockets.on('connection', newConnection);
 function newConnection(socket){
 	console.log('new connection: ' + socket.id)
 	
-	socket.on('mouse', mouseMsg);
+	socket.on('drawing', mouseMsg);
 	function mouseMsg(received){
 		console.log(received.data);
-		socket.to(received.room).emit('mouse', received.data);
+		socket.to(received.room).emit('drawing', received.data);
 	}
 
 	socket.on("join_room", room=>{
 		console.log(room);
 		socket.join(room);
-	})
-	socket.on("message",(room,message)=>{
-		socket.to(room).emit("message",message);
-
 	})
 }

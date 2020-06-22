@@ -24,11 +24,11 @@
           <p class="lead">An Augmented Reality tool for fun, artistic creations</p>
           <hr />
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-2" id="jumbo-canvas">
+    <div class="container" id="jumbo-canvas">
+      <div class = "container">
+          <div class="row">
+            <div class="col-sm" >
                 <p>Please choose a brush: </p>
-                <div class="container">
                   <div class="radio form-check-inline">
                       <label><input type="radio" name="brush_choice" value="mouse" checked>Mouse</label>
                   </div>
@@ -41,10 +41,13 @@
                     <div class="radio form-check-inline">
                       <label><input type="radio" name="brush_choice" value="rightWrist">Right Hand</label>
                     </div>
-                  </div>
-            </div>
+                    <div class="form-check-inline">
+                      <button type="button" class="btn btn-success" onclick="downloadcanvas()">Save Artwork</button>
+                    </div> 
+              </div>
+          </div>
+      </div>
 
-        </div>
     </div>
 
 

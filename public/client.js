@@ -10,6 +10,11 @@ $("input[type='radio']").click(function(){
 });
 });
 
+function downloadcanvas(){
+	console.log("ok lets download");
+	save(pg, "art", 'png');
+
+}
 
 
 var socket, myColor, mySize;
@@ -19,15 +24,21 @@ var socket, myColor, mySize;
 let poseNet;
 let poses = [];
 let video;
+let pg;
 
 function setup(){
-	var canvas = createCanvas(500, 500);
+	var canvas = createCanvas(700, 500);
 	canvas.parent('jumbo-canvas')
 	video = createCapture(VIDEO);
 	video.size(width, height);
 	video.parent('jumbo-canvas');
 	// Hide the video element, and just show the canvas
-	// video.hide();
+	video.hide();
+
+	//graphics on top of video feed
+	pixelDensity(1);
+	pg = createGraphics(width, height);
+  
   
 	// // Create a new poseNet method with a single detection
 	poseNet = ml5.poseNet(video, modelReady);
@@ -51,6 +62,9 @@ function modelReady() {
 }
 
 function draw() {
+	image(video,0,0,width,height);
+
+	image(pg, 0, 0, width, height);
 
 	// background(51);
   
@@ -62,9 +76,9 @@ function draw() {
 
 
 function newDrawing(data){
-	noStroke();
-	fill(data.color[0],data.color[1],data.color[2]);
-	ellipse(data.x, data.y, data.size, data.size)
+	pg.noStroke();
+	pg.fill(data.color[0],data.color[1],data.color[2]);
+	pg.ellipse(data.x, data.y, data.size, data.size)
 }
 
 function mouseDragged(){
@@ -78,9 +92,9 @@ function mouseDragged(){
 		  console.log(data);
 		socket.emit('mouse', data)
 	
-		noStroke();
-		fill(myColor[0], myColor[1], myColor[2]);
-		ellipse(mouseX, mouseY, mySize, mySize);
+		pg.noStroke();
+		pg.fill(myColor[0], myColor[1], myColor[2]);
+		pg.ellipse(mouseX, mouseY, mySize, mySize);
 
 	}
 
@@ -98,9 +112,9 @@ function drawKeypoints()  {
 		let keypoint = pose.keypoints[j];
 		// Only draw an ellipse is the pose probability is bigger than 0.2
 		if (keypoint.score > 0.2 && keypoint.part == user_brush) {
-		  fill(myColor[0], myColor[1], myColor[2]);
-		  noStroke();
-		  ellipse(keypoint.position.x, keypoint.position.y, mySize, mySize);
+		  pg.fill(myColor[0], myColor[1], myColor[2]);
+		  pg.noStroke();
+		  pg.ellipse(keypoint.position.x, keypoint.position.y, mySize, mySize);
 		  var data = {
 			x: keypoint.position.x,
 			y: keypoint.position.y,

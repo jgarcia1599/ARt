@@ -1,5 +1,6 @@
 var express = require('express'); 
 var app = express();
+var Qs = require('qs');
 var port = 3000;
 var server = app.listen(process.env.PORT || port);
 app.use(express.static('public'));
@@ -13,10 +14,17 @@ function newConnection(socket){
 	console.log('new connection: ' + socket.id)
 	
 	socket.on('mouse', mouseMsg);
-	function mouseMsg(data){
-		socket.broadcast.emit('mouse', data);
-		//the line below will send to everyone including the client
-		// io.sockets.emit('mouse', data);
-		console.log(data)
+	function mouseMsg(received){
+		console.log(received.data);
+		socket.to(received.room).emit('mouse', received.data);
 	}
+
+	socket.on("join_room", room=>{
+		console.log(room);
+		socket.join(room);
+	})
+	socket.on("message",(room,message)=>{
+		socket.to(room).emit("message",message);
+
+	})
 }

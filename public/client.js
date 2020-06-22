@@ -10,11 +10,13 @@ $("input[type='radio']").click(function(){
 });
 });
 
-function downloadcanvas(){
-	console.log("ok lets download");
-	save(pg, "art", 'png');
+// Get username and room from URL
+const {room} = Qs.parse(location.search, {
+	ignoreQueryPrefix: true
+  });
+console.log(room);
 
-}
+
 
 
 var socket, myColor, mySize;
@@ -56,7 +58,12 @@ function setup(){
 	socket.on('mouse', newDrawing)
 	myColor = [random(255), random(255), random(255)]
 	mySize = random(10,70)
+
+	//Join chatroom
+	socket.emit('join_room',room);
 }
+console.log(socket);
+
 function modelReady() {
 	console.log("Model Ready");
 }
@@ -90,7 +97,7 @@ function mouseDragged(){
 			size: mySize
 		}
 		  console.log(data);
-		socket.emit('mouse', data)
+		socket.emit('mouse', {data,room});
 	
 		pg.noStroke();
 		pg.fill(myColor[0], myColor[1], myColor[2]);
@@ -121,7 +128,7 @@ function drawKeypoints()  {
 			color: myColor,
 			size: mySize
 			};
-			socket.emit('mouse', data);
+			socket.emit('mouse', {data,room});
 
 
 		}
@@ -143,6 +150,13 @@ function drawKeypoints()  {
 	  }
 	}
   }
+
+//function to download the canvas once a user is done.
+function downloadcanvas(){
+	console.log("ok lets download");
+	save(pg, "art", 'png');
+
+}
 
 
 

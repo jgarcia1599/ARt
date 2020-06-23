@@ -1,7 +1,7 @@
 # AR[t]
 An Augmented Reality tool for artistic collaboration. 
 <div align="center">
-<img src="art.gif">
+<iframe src="https://giphy.com/embed/JpN9Wg5BuuW7Jka2gV" width="480" height="258" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/JpN9Wg5BuuW7Jka2gV">via GIPHY</a></p>
 </div>
 
 # Documentation

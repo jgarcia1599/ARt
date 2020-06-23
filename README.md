@@ -1,5 +1,8 @@
 # AR[t]
 An Augmented Reality tool for artistic collaboration. 
+<div align="center">
+jksjsjsjsj
+</div>
 
 # Documentation
 
@@ -14,7 +17,7 @@ For my Intro to IM final project, I wanted to delve into something I have been a
 The front-end of this web app is a simple processing sketch wrapped up in a DOM element that is styled using the Bootstrap Library. There is also a landing page where users can choose the room they want to join. 
 
 
-### Nodejs Part (Back-end)
+### Nodejs Side (Back-end)
 
 
 

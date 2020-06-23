@@ -1,6 +1,10 @@
 # ARt
 A peer to peer Augmented Reality canvas for artistic self-expression
 
+# To use
+- Go to this url: https://collart.herokuapp.com/
+
+
 # To install locally
 - clone this repository
 - cd into directory 

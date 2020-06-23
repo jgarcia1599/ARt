@@ -61,6 +61,13 @@ function setup(){
 
 	//Join chatroom
 	socket.emit('join_room',room);
+
+	//add chatroom name to UI
+	$('#room').append(room);
+	$('#room').css({
+		'color':`rgb(${myColor[0]},${myColor[1]},${myColor[2]})`
+	});
+
 }
 console.log(socket);
 

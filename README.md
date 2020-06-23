@@ -27,7 +27,7 @@ tells us that the client has joined the room named "room1". I then send this inf
 //Join chatroom
 socket.emit('join_room',room);
 ```
-where room is the variable that contains the URL's room parameter.  This is done by using the ```socket``` variable, which is an instantiation of the socket.io library on the client side. The ```emit()``` function sends messages to the server with a name (in this case, the message name is "join_room") and some data (in this case, the room name). This pattern is then repeated for other emit messages that the client code needs to send to the server.  
+where room is the variable that contains the URL's room parameter.  This is done by using the ```socket``` variable, which is an instantiation of the socket.io library on the client side. The ```emit()``` function sends messages to the server with a name (in this case, the message name is "join_room") and some data (in this case, the room name). This pattern is then repeated for other emit messages that the client code needs to send to the server for this web app to work.  The room variable is also displayed in the html page using jquery so that the users are aware of which rooom they are in.
     
 In the painting page, the background of the p5 sketch is the video feed and the drawings are rendered on top of the video feed by appending them to a graphics element.  An example of this can be seen in the following ```mousePressed()``` where an ellipse is appended to the graphics element ```pg``` based on the mouse's x and y position. 
 
@@ -49,7 +49,7 @@ function mouseDragged(){
 		pg.ellipse(mouseX, mouseY, mySize, mySize);
 }
 ```
-As seen above, not only do we need to draw on the canvas element, we also need to send it to the server. We do this using the emit function of the socket variable. 
+As seen above, not only do we need to draw on the canvas element, we also need to send it to the server so that the same drawing is reflected on the sketches of all of the clients connected to the same room. We do this using the emit function of the socket variable. 
 
 The pose estimation aspect of this project is actually fairly simple. The Posenet library basically provides an array with all the human poses, and the probability of a pose being on the videocamera feed. As such, I basically iterate through all of the poses every single ```draw``` frame in the processing sketch, and if a specific pose is selected by a user and there is a probability of 0.2 that the pose is there, I draw an ellipse on the pose's position. This happens in the following function
 
@@ -78,14 +78,53 @@ The pose estimation aspect of this project is actually fairly simple. The Posene
 ```
 Just like in the mousePressed() example, every ellipsed drawn on the sketch is send to the server using the emit function. 
 
+I also wanted to let users be able to download their artwork. This is done using the save function in p5.js, as seen below: 
 
+```javascript
+//function to download the canvas once a user is done.
+function downloadcanvas(){
+	console.log("ok lets download");
+	save(pg, "art", 'png');
+
+}
+```
+This functioned is called whenever the users clicks the save artwork button on the painting page. 
 
 
 ### Nodejs Side (Back-end)
 
+The most difficult aspect of this project was to create a robust backend to handle all of the socket messages that aree sent by the client. Although the entire server consistd of 30 lines of code, it required me to read up on node a lot and to watch a lot of tutorials that implement similar projects. As stated above, the clients basically send three types of socket messages: 
+- connection
+This is the first event handler, that basically notifies the server whenever a new user joins.
+- join_room : to join a user to a specific room
+This message contains the room name. The user is assigned to a room by doing the following: 
 
+```javascript
+	socket.on("join_room", room=>{
+		console.log(room);
+		socket.join(room);
+	});
+```
+Very simple! When I found out how to do this, I was very happy!
+
+- drawing : information of the ellipse being drawn within a specific room
+This message receives the ellipse's data and the room the client belongs to all contained within a variable called ``` received```. This data is received by the server and then is emmited back to all of the clients connected in the same room as the client who send the message. This can be seen below: 
+
+```javascript
+	socket.on('drawing', received =>{
+		console.log(received.data);
+		socket.to(received.room).emit('drawing', received.data);
+	});
+
+```
 
 ## Future Improvements
+As my focus was to learn more about node, I didn't implement a lot of the features artists who use my app would like. As such, after this class, I will work to implement the following:
+
+- A color palatte UI that lets users choosee the color of their brush.
+- A more robust backend that lets users know who is in the room. 
+
+If you have any recommendation, please feel free to contact me!
 
 # To use online
 - Go to this url: https://collart.herokuapp.com/

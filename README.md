@@ -23,7 +23,7 @@ https://collart.herokuapp.com/paint.html?room=room1
 ```
 tells us that the client has joined the room named "room1". I then send this information to the server with the following function: 
 
-```
+```javascript
 //Join chatroom
 socket.emit('join_room',room);
 ```

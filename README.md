@@ -7,7 +7,7 @@ An Augmented Reality tool for artistic collaboration.
 # Documentation
 
 ## Description
-For my Intro to IM final project, I wanted to delve into something I have been afraid of delving into in the past: server-side programming with Node.js. After talking with my professor, he agreed to let me take on this challenge instead of connecting Arduino and Processing ( which I proved to myself I can do in this previous <a href="https://github.com/jgarcia1599/IntrotoIM_Summer2020/tree/master/hw_June21">assignment</a>). Similar to how we were supposed to use serial communication to communicate between an Arduino microcontroller and a Processing sketch, I decided to use web sockets to communicate between a Node.js server and the clients connected to said server. As a result, I created ARt, a tool that lets artists and art enthusiasts create simple art pieces over the Internet. Inspired by a remote-first era, I envisioned a future where everything can take place online, even art! To spice it up a notch, I decided to let the users of the app use their body for artistic self expression by using body pose tracking using Posenet. 
+For my Intro to IM final project, I wanted to delve into something I have been afraid of delving into in the past: server-side programming with Node.js. After talking with my professor, he agreed to let me take on this challenge instead of connecting Arduino and Processing ( which I proved to myself I can do in this previous <a href="https://github.com/jgarcia1599/IntrotoIM_Summer2020/tree/master/hw_June21">assignment</a>). Similar to how we were supposed to use serial communication to communicate between an Arduino microcontroller and a Processing sketch, I decided to use web sockets to communicate between a Node.js server and the clients connected to said server. As a result, I created ARt, a tool that lets artists and art enthusiasts create simple art pieces over the Internet. Inspired by a remote-first era, I envisioned a future where everything can take place online, even art! To spice it up a notch, I decided to let the users of the app use their body for artistic self expression through body pose tracking using Posenet. 
 
 
 
@@ -93,7 +93,7 @@ This functioned is called whenever the users clicks the save artwork button on t
 
 ### Nodejs Side (Back-end)
 
-The most difficult aspect of this project was to create a robust backend to handle all of the socket messages that aree sent by the client. Although the entire server consistd of 30 lines of code, it required me to read up on node a lot and to watch a lot of tutorials that implement similar projects. As stated above, the clients basically send three types of socket messages: 
+The most difficult aspect of this project was to create a robust backend to handle all of the socket messages that are sent by the client. Although the entire server consistd of 30 lines of code, it required me to read up on node.js a lot and to watch a lot of tutorials that implement similar projects. As stated above, the clients basically send three types of socket messages: 
 - connection
 This is the first event handler, that basically notifies the server whenever a new user joins.
 - join_room : to join a user to a specific room
@@ -121,7 +121,7 @@ This message receives the ellipse's data and the room the client belongs to all 
 ## Future Improvements
 As my focus was to learn more about node, I didn't implement a lot of the features artists who use my app would like. As such, after this class, I will work to implement the following:
 
-- A color palatte UI that lets users choosee the color of their brush.
+- A color palatte UI that lets users choose the color of their brush.
 - A more robust backend that lets users know who is in the room. 
 
 If you have any recommendation, please feel free to contact me!

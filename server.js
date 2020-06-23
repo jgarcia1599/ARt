@@ -1,6 +1,5 @@
 var express = require('express'); 
 var app = express();
-var Qs = require('qs');
 var port = 3000;
 var server = app.listen(process.env.PORT || port);
 app.use(express.static('public'));
@@ -24,12 +23,3 @@ function newConnection(socket){
 		socket.join(room);
 	})
 }
-
-
-const users = [];
-
-// Get room users
-function getRoomUsers(room) {
-	return users.filter(user => user.room === room);
-  }
-  

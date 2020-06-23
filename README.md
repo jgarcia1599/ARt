@@ -1,8 +1,8 @@
 # AR[t]
 An Augmented Reality tool for artistic collaboration. 
-<div align="center">
+
 <img src="art.gif">
-</div>
+
 
 # Documentation
 

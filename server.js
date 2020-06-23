@@ -24,3 +24,12 @@ function newConnection(socket){
 		socket.join(room);
 	})
 }
+
+
+const users = [];
+
+// Get room users
+function getRoomUsers(room) {
+	return users.filter(user => user.room === room);
+  }
+  

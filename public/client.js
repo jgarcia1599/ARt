@@ -71,10 +71,10 @@ function setup(){
 	myColor = [random(255), random(255), random(255)]
 	mySize = random(10,70)
 
-	//Join chatroom
+	//Join sketchroom
 	socket.emit('join_room',room);
 
-	//add chatroom name to UI
+	//add sketchroom name to UI
 	$('#room').append(room);
 	$('#room').css({
 		'color':`rgb(${myColor[0]},${myColor[1]},${myColor[2]})`

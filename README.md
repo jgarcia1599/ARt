@@ -6,7 +6,11 @@ An Augmented Reality tool for artistic collaboration.
 - Create a room on the landing page. 
 - Share URL with your friends and start painting!
 
-
+# Dependencies
+- <a href="https://ml5js.org/reference/api-PoseNet/">ml5's Posenet</a>
+- <a href="https://p5js.org/">p5.js</a>
+- <a href="https://nodejs.org/en/">Node.js</a>
+    - 
 # To install and use locally
 - Clone this repository.
 ```
@@ -35,8 +39,6 @@ If you wish to expand on this project, fork this repository. I used the <a href=
 nodemon server.js
 
 ```
-
-
 
 # Resources 
 - Traversy Media tutorial: https://www.youtube.com/watch?v=jD7FnbI76Hg

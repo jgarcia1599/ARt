@@ -2,9 +2,9 @@
   "//1": "describes your app and its dependencies",
   "//2": "https://docs.npmjs.com/files/package.json",
   "//3": "updating this file will download and update your packages",
-  "name": "my-glitch-app",
+  "name": "ARt",
   "version": "0.0.1",
-  "description": "What am I about?",
+  "description": "An Augmented Reality Tool for artistic collaboration",
   "scripts": {
     "start": "node server.js"
   },
@@ -18,12 +18,11 @@
     "node": "9.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/my-glitch-app"
+    "url": "https://github.com/jgarcia1599/ARt"
   },
   "license": "MIT",
   "keywords": [
     "node",
-    "glitch",
     "express"
   ]
 }

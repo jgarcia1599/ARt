@@ -118,6 +118,10 @@ This message receives the ellipse's data and the room the client belongs to all 
 
 ```
 
+## Deployment
+Since having the app only running on my localhost limited its potential, I decided to deploy it on Heroku, a platform as a service that enables developers to upload their applications to the cloud,  using the following tutorial: https://devcenter.heroku.com/articles/deploying-nodejs. 
+
+
 ## Future Improvements
 As my focus was to learn more about node, I didn't implement a lot of the features artists who use my app would like. As such, after this class, I will work to implement the following:
 
